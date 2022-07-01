@@ -26,7 +26,7 @@ public class MemberDto {
                 .mpassword(passwordEncoder.encode(this.mpassword))  // BCrypt로 인코딩한 회원 비밀번호
                 .mname(this.mname)  // 회원 이름
                 .memail(this.memail) // 회원 이메일
-                .role(Role.MEMBER)  // 권한 부여
+                .role(Role.일반사용자)  // 권한 부여
                 .build();
     }
 

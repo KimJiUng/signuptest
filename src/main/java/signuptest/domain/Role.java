@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 public enum Role {
 
     // 열거형: MEMBER [0] , ADMIN [1]
-    MEMBER("ROLE_MEMBER","회원"),
+    일반사용자("ROLE_MEMBER","회원"),
+    SNS사용자("ROLE_MEMBER","회원"),
     ADMIN("ROLE_ADMIN","관리자");
 
     // final = 상수[데이터 고정]

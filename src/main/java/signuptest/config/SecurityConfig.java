@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()    // 인증된 요청
-                .antMatchers("/").permitAll()   // 인증이 없어도 요청 가능
+                .antMatchers("/**").permitAll()   // 인증이 없어도 요청 가능
                 .and()
                 .formLogin()    // 로그인 페이지 보안 설정
                 .loginPage("/login")    // 아이디, 비밀번호 입력받을 페이지 URL
@@ -34,7 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf() // 서버에게 요청할 수 있는 페이지 제한
                 .ignoringAntMatchers("/logincontroller")   // 로그인 처리 URL csrf 예외처리
-                .ignoringAntMatchers("/signupcontroller");    // 회원가입 처리 URL csrf 예외처리
+                .ignoringAntMatchers("/signupcontroller")   // 회원가입 처리 URL csrf 예외처리
+                .and()
+                .oauth2Login()// oauth2 관련 설정
+                .loginPage("/login")    // oauth2 로그인 할 페이지
+                .userInfoEndpoint()// 유저 정보가 들어오는 위치
+                .userService(memberService); // 해당 서비스로 유저 정보 받기 [loadUser 재정의]
+
+
     }
 
 
